@@ -6,12 +6,13 @@ import Search from "../components/List/Search";
 import { products } from "../assets/data/products";
 
 function Home() {
+  const [items, setItems] = useState(products);
   const [search, setSearch] = useState("");
   return (
     <div className="w-11/12 py-4 mx-auto">
       <Navbar />
       <Search search={search} onSearch={setSearch} />
-      <ProductList products={products} search={search} />
+      <ProductList products={items} onSetItems={setItems} search={search} />
       <Footer />
     </div>
   );
