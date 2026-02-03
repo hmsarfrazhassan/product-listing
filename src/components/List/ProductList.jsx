@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 
 const ProductList = ({ products, onSetItems, search }) => {
@@ -15,19 +15,19 @@ const ProductList = ({ products, onSetItems, search }) => {
         .map((product) => (
           <Link
             to={`detail/${product.id}`}
-            className="border-2 border-slate-200 rounded-lg shadow-xl cursor-pointer relative"
+            className="group border-2 border-slate-200 rounded-lg shadow-xl cursor-pointer relative"
             key={product.id}
           >
             <div
               onClick={(e) => {
-                // e.stopPropagation();
-                e.preventDefault();
+                e.stopPropagation();
                 handleDeleteItem(product.id);
               }}
-              className="absolute h-8 w-8 p-1 rounded-full bg-red-100 flex justify-center items-center cursor-pointer right-3 top-3"
+              className="absolute h-8 w-8 p-1 rounded-full bg-red-100 flex justify-center items-center cursor-pointer right-3 top-3 opacity-0 group-hover:opacity-100 transition"
             >
               ❌
             </div>
+
             <img src={product.image} alt={product.name} className="w-full" />
             <div className="flex justify-between items-center p-2">
               <p className="font-semibold">{product.name}</p>
